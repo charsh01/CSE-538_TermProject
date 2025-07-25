@@ -1,6 +1,7 @@
 import csv
 from io import StringIO
 
+# Parse function
 def parse_custom_line(line):
     parts = []
     current = ''
@@ -18,10 +19,10 @@ def parse_custom_line(line):
         else:
             current += char
         i += 1
-    parts.append(current)  # add last field
+    parts.append(current)
     return parts
 
-# Example: parsing the whole file
+# Parse the file
 parsed_rows = []
 with open("D:\School\CSE-538\Term Project\political data\OpenSecrets\cmtes22.txt", "r", encoding="utf-8") as f:
     for line in f:
@@ -30,11 +31,11 @@ with open("D:\School\CSE-538\Term Project\political data\OpenSecrets\cmtes22.txt
             fields = parse_custom_line(line)
             parsed_rows.append(fields)
 
-# Optionally convert to DataFrame
+# Convert to DataFrame
 import pandas as pd
 df = pd.DataFrame(parsed_rows)
 
-# Print or save
+# Save as csv
 print(df)
 df.to_csv("D:\School\CSE-538\Term Project\political data\OpenSecrets\parsed_output.csv", index=False)
 
