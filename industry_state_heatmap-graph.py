@@ -13,6 +13,7 @@ heatmap_data = df.pivot(index='State', columns='Sector', values='Amount')
 plt.figure(figsize=(18, 10))
 sns.heatmap(heatmap_data, linewidths=0.5, annot=True, fmt='.0f', norm=LogNorm())
 
+# Label and adjust the heatmap
 plt.title('Total Industry Sector Donations by State')
 plt.xlabel('Industry Sector')
 plt.ylabel('State')
