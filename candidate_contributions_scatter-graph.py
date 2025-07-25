@@ -15,6 +15,7 @@ party_colors = {
     5: '#9467bd'   # Third Party - Purple
 }
 
+# Enumerated party values for graph legend
 party_labels = {
     1: "Democratic Party",
     2: "Republican Party",
