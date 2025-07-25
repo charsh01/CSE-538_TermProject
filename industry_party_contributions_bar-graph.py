@@ -4,14 +4,17 @@ import matplotlib.ticker as ticker
 
 df = pd.read_csv(r"C:\Users\cphar\.Neo4jDesktop\relate-data\dbmss\dbms-92f6f9c7-27e7-4e1f-b517-5760b2f2c472\import\party_industry_distribution.csv")
 
+# Limit columns
 df = df[df['party'].isin(['Democratic Party', 'Republican Party'])]
 
 pivot_df = df.pivot(index="industry", columns="party", values="total_amount")
 
 ax = pivot_df.plot(kind="bar", figsize=(14, 8))
 
+# Format axis for '$' currency
 ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, _: f'${x:,.0f}'))
 
+# Format bars, including percent label
 for container in ax.containers:
     for bar in container:
         height = bar.get_height()
@@ -24,7 +27,7 @@ for container in ax.containers:
         pct = (height / total) * 100 if total else 0
         ax.text(x, height, f"{pct:.1f}%", ha='center', va='bottom', fontsize=8, rotation=0)
 
-
+# Further formatting and labelling visual
 plt.yscale('log')
 plt.title("Contributions by Industry and Party")
 plt.ylabel("Total Amount")
